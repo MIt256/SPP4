@@ -1,25 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using SPP4_TestsGenerator.IO;
-using TestsGenerator.Lib;
+using System.IO;
+using System.Threading.Tasks;
 
-namespace SPP4_TestsGenerator
+namespace TestsGenerator
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            var readPaths = new List<string>()
+            string FolderPath = "D:\\Test generator\\Results";
+
+            List<string> FilesPath = new List<string>() 
             {
-                "../../../../TestClasses/BasicTest.cs",
-                "../../../../TestClasses/SmartTest.cs"
+                "D:\\Test generator\\NUnitTests\\TestClasses2.cs",
+                "D:\\Test generator\\NUnitTests\\TestClasses.cs"
             };
-            
-            var config = new TestsGeneratorConfig(AsyncFileStream.ReadFromFile, AsyncFileStream.WriteToFile, 2, 2, 2);
-            config.ReadPaths.AddRange(readPaths);
-            
-            new NUnitTestsGenerator(config).GenerateClasses().Wait();
-            Console.WriteLine("Generated");
+
+            Pipeline p = new Pipeline(new PipelineConfiguration(1, 1, 1));
+            await p.Execute(FilesPath, FolderPath);
         }
     }
 }
