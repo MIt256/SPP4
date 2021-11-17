@@ -10,7 +10,6 @@ namespace TestsGenerator
         static async Task Main(string[] args)
         {
             string FolderPath = "D:\\Test generator\\Results";
-
             List<string> FilesPath = new List<string>() 
             {
                 "D:\\Test generator\\NUnitTests\\TestClasses2.cs",
